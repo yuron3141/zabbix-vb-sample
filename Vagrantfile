@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
 
   # Zabbix Agent VM
   config.vm.define :zabbix_agent do | zabbix_agent |
-    zabbix_agent.vm.hostname = "zabbix_agent"
+    zabbix_agent.vm.hostname = "zabbixagent"
     zabbix_agent.vm.network :private_network, ip: "192.168.56.20"
     zabbix_agent.vm.network "forwarded_port", guest: 80, host: 8889
 
