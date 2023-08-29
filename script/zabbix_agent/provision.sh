@@ -11,6 +11,10 @@ sudo dnf -y install httpd
 sudo systemctl start httpd
 sudo systemctl enable httpd
 
+# Acitivate Firewall
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+
 # Configure Firewall
 sudo firewall-cmd --add-service={http,https} --zone=public --permanent
 sudo firewall-cmd --add-port=10050/tcp --zone=public --permanent
@@ -21,8 +25,8 @@ sudo rpm -ivh https://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-release-5.
 sudo dnf -y install zabbix-agent
 
 # Configure zabbix agent
-sed -i 's/Server=.*/Server=192.168.56.10/' /etc/zabbix/zabbix-agentd.conf
-sed -i 's/# ListenPort=10050/ListenPort=10050/' /etc/zabbix/zabbix-agentd.conf
+sed -i 's/Server=.*/Server=192.168.56.10/' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# ListenPort=10050/ListenPort=10050/' /etc/zabbix/zabbix_agentd.conf
 
 # Start and Enable zabbix agent
 sudo systemctl start zabbix-agent
